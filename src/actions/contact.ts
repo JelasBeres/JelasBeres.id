@@ -1,8 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { db } from "@/db";
-import { contacts } from "@/db/schema";
+import { prisma } from "@/lib/prisma";
 import { Resend } from "resend";
 
 const contactSchema = z.object({
@@ -28,7 +27,9 @@ export async function submitContact(formData: FormData) {
     const validatedData = contactSchema.parse(data);
 
     // Save to Database
-    await db.insert(contacts).values(validatedData);
+    await prisma.contact.create({
+      data: validatedData,
+    });
 
     // Send email via Resend if API key is present
     if (process.env.RESEND_API_KEY) {

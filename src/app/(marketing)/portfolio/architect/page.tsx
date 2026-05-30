@@ -1,12 +1,17 @@
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { Metadata } from "next";
+import { getPublicProjects } from "@/actions/projects";
 
 export const metadata: Metadata = {
   title: "Architecture Portfolio | JelasBeres.id",
   description: "Explore our latest system architecture projects.",
 };
 
-export default function ArchitectPortfolioPage() {
+export const revalidate = 0;
+
+export default async function ArchitectPortfolioPage() {
+  const projects = await getPublicProjects();
+
   return (
     <div className="pt-32 pb-24 min-h-screen bg-background border-t border-border">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -22,7 +27,7 @@ export default function ArchitectPortfolioPage() {
           </p>
         </div>
 
-        <PortfolioGrid filterCategory="architect" />
+        <PortfolioGrid filterCategory="architect" projects={projects as any} />
       </div>
     </div>
   );

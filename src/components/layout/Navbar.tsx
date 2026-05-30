@@ -12,6 +12,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -37,6 +38,9 @@ export function Navbar() {
         { href: "/portfolio/web-development", label: "Web Development" },
         { href: "/portfolio/mobile-development", label: "Mobile Development" },
         { href: "/portfolio/architect", label: "Architect" },
+        { href: "/portfolio/machine-learning", label: "Machine Learning" },
+        { href: "/portfolio/data-science", label: "Data Science" },
+        { href: "/portfolio/data-analyst", label: "Data Analyst" },
       ]
     },
     { href: "/pricing", label: "04. Pricing" },
@@ -97,19 +101,32 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6">
             {navLinks.map((link) => (
-              <li 
-                key={link.href} 
-                className="relative"
-                onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
-                onMouseLeave={() => link.dropdown && setActiveDropdown(null)}
-              >
-                <Link
-                  href={link.href}
-                  className="font-apple font-medium text-sm text-muted hover:text-green transition-colors flex items-center gap-1 py-2"
+                <li 
+                  key={link.href} 
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (link.dropdown) setActiveDropdown(link.label);
+                    setHoveredLink(link.label);
+                  }}
+                  onMouseLeave={() => {
+                    if (link.dropdown) setActiveDropdown(null);
+                    setHoveredLink(null);
+                  }}
                 >
-                  {link.label}
-                  {link.dropdown && <ChevronDown size={14} />}
-                </Link>
+                  {hoveredLink === link.label && (
+                    <motion.div
+                      layoutId="nav-hover-pill"
+                      className="absolute inset-0 bg-surface-hover -z-10 rounded-sm"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                  <Link
+                    href={link.href}
+                    className="font-apple font-medium text-sm text-muted hover:text-foreground transition-colors flex items-center gap-1 px-3 py-2"
+                  >
+                    {link.label}
+                    {link.dropdown && <ChevronDown size={14} />}
+                  </Link>
 
                 {/* Dropdown Menu */}
                 {link.dropdown && (

@@ -17,7 +17,16 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-export function Contact() {
+interface ServiceData {
+  slug: string;
+  title: string;
+}
+
+interface ContactProps {
+  services?: ServiceData[];
+}
+
+export function Contact({ services }: ContactProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -116,12 +125,22 @@ export function Contact() {
                   className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors appearance-none"
                 >
                   <option value="">Select a service</option>
-                  <option value="Web Development">Pengembangan Web</option>
-                  <option value="Mobile App">Aplikasi Mobile</option>
-                  <option value="UI/UX Design">Desain UI/UX</option>
-                  <option value="Backend & API">Integrasi API</option>
-                  <option value="Tech Consulting">Konsultasi IT</option>
-                  <option value="Maintenance">Pemeliharaan Sistem</option>
+                  {services && services.length > 0 ? (
+                    services.map((service) => (
+                      <option key={service.slug} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="Web Development">Pengembangan Web</option>
+                      <option value="Mobile App">Aplikasi Mobile</option>
+                      <option value="UI/UX Design">Desain UI/UX</option>
+                      <option value="Backend & API">Integrasi API</option>
+                      <option value="Tech Consulting">Konsultasi IT</option>
+                      <option value="Maintenance">Pemeliharaan Sistem</option>
+                    </>
+                  )}
                 </select>
                 {errors.serviceType && <p className="text-red-400 text-xs font-mono mt-1">{errors.serviceType.message}</p>}
               </div>

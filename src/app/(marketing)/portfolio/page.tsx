@@ -1,12 +1,17 @@
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { Metadata } from "next";
+import { getPublicProjects } from "@/actions/projects";
 
 export const metadata: Metadata = {
   title: "Portfolio | JelasBeres.id",
   description: "Explore our latest projects spanning web development, mobile apps, and enterprise architecture.",
 };
 
-export default function PortfolioPage() {
+export const revalidate = 0; // Or standard revalidation if preferred
+
+export default async function PortfolioPage() {
+  const projects = await getPublicProjects();
+
   return (
     <div className="pt-32 pb-24 min-h-screen bg-background border-t border-border">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -22,7 +27,7 @@ export default function PortfolioPage() {
           </p>
         </div>
 
-        <PortfolioGrid />
+        <PortfolioGrid projects={projects as any} />
       </div>
     </div>
   );

@@ -71,10 +71,7 @@ export function Footer() {
           <p className="text-muted font-mono text-xs">
             © {new Date().getFullYear()} JelasBeres.id. All rights reserved.
           </p>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-green animate-pulse"></span>
-            <span className="text-muted font-mono text-xs">Systems Operational</span>
-          </div>
+
         </div>
       </div>
     </footer>

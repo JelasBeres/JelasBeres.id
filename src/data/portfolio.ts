@@ -1,4 +1,4 @@
-export type ProjectCategory = "web" | "mobile" | "architect";
+export type ProjectCategory = "web" | "mobile" | "architect" | "machine-learning" | "data-science" | "data-analyst";
 
 export interface Project {
   id: string;
@@ -71,5 +71,35 @@ export const portfolioProjects: Project[] = [
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200",
     techStack: ["Apache Kafka", "Snowflake", "Python", "Airflow"],
     link: "/portfolio/data-pipeline-architecture",
+  },
+  {
+    id: "customer-churn-prediction",
+    title: "Customer Churn Prediction Model",
+    description: "Machine learning model predicting customer churn with 94% accuracy, integrated into a CRM for proactive retention strategies.",
+    category: "machine-learning",
+    categoryLabel: "Machine Learning",
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=1200",
+    techStack: ["Python", "Scikit-Learn", "XGBoost", "FastAPI"],
+    link: "/portfolio/customer-churn-prediction",
+  },
+  {
+    id: "retail-sales-forecasting",
+    title: "Retail Sales Forecasting Engine",
+    description: "Advanced time-series forecasting model for inventory optimization across 500+ retail locations worldwide.",
+    category: "data-science",
+    categoryLabel: "Data Science",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+    techStack: ["Prophet", "TensorFlow", "Pandas", "AWS SageMaker"],
+    link: "/portfolio/retail-sales-forecasting",
+  },
+  {
+    id: "marketing-attribution-dashboard",
+    title: "Marketing Attribution Dashboard",
+    description: "Comprehensive data analysis dashboard tracking ROI across multi-channel marketing campaigns using MTA models.",
+    category: "data-analyst",
+    categoryLabel: "Data Analyst",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+    techStack: ["Tableau", "SQL", "BigQuery", "dbt"],
+    link: "/portfolio/marketing-attribution-dashboard",
   },
 ];

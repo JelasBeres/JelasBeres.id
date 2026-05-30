@@ -62,10 +62,7 @@ export function Hero() {
           style={{ y: textY, opacity: textOpacity }}
           className="max-w-2xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-full bg-surface/80 backdrop-blur-sm mb-8">
-            <span className="w-2 h-2 rounded-full bg-green animate-pulse"></span>
-            <span className="font-mono text-xs text-foreground">Available for new projects</span>
-          </div>
+
 
           <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 text-foreground">
             {words.map((word, i) => (
