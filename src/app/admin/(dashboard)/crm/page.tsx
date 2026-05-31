@@ -226,10 +226,10 @@ export default function AdminCRMPage() {
   return (
     <div className="space-y-6 max-w-full">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#E8E8E8]">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border">
         <div>
-          <p className="text-[11px] tracking-[0.18em] uppercase text-[#AAA] mb-1">Manajemen</p>
-          <h1 className="text-2xl font-semibold text-[#111] tracking-tight">CRM & Client Leads</h1>
+          <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Manajemen</p>
+          <h1 className="text-2xl font-semibold text-foreground tracking-tight">CRM & Client Leads</h1>
         </div>
         <button
           onClick={handleOpenAdd}
@@ -244,19 +244,19 @@ export default function AdminCRMPage() {
       <div className="flex flex-col xl:flex-row justify-between gap-3">
         <div className="flex flex-col sm:flex-row gap-2 flex-1">
           <div className="relative flex-1">
-            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#CCC]" strokeWidth={1.8} />
+            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" strokeWidth={1.8} />
             <input
               type="text"
               placeholder="Cari prospek..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#E0E0E0] text-[#111] text-[13px] placeholder:text-[#CCC] focus:outline-none focus:border-[#999] transition-colors"
+              className="w-full pl-9 pr-4 py-2.5 bg-surface border border-border text-foreground text-[13px] placeholder:text-muted focus:outline-none focus:border-border transition-colors"
             />
           </div>
           <select
             value={filterService}
             onChange={(e) => setFilterService(e.target.value)}
-            className="px-3 py-2 bg-white border border-[#E0E0E0] text-[#555] text-[12px] focus:outline-none focus:border-[#999] transition-colors"
+            className="px-3 py-2 bg-surface border border-border text-muted text-[12px] focus:outline-none focus:border-border transition-colors"
           >
             <option value="all">Semua Layanan</option>
             <option value="Web Development">Web Development</option>
@@ -267,13 +267,13 @@ export default function AdminCRMPage() {
         </div>
 
         {/* Tab switcher */}
-        <div className="flex border border-[#E0E0E0] bg-white self-start">
+        <div className="flex border border-border bg-surface self-start">
           {([["kanban", "Kanban", Columns], ["inbox", "Inbox", List]] as const).map(([tab, label, Icon]) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex items-center gap-1.5 px-4 py-2.5 text-[12px] transition-colors ${
-                activeTab === tab ? "bg-[#111] text-white" : "text-[#666] hover:bg-[#F4F4F4]"
+                activeTab === tab ? "bg-[#111] text-white" : "text-muted hover:bg-surface-hover"
               }`}
             >
               <Icon size={13} strokeWidth={1.8} />
@@ -307,20 +307,20 @@ export default function AdminCRMPage() {
                   onDrop={(e) => handleDrop(e, stage.id)}
                   className={`w-72 shrink-0 flex flex-col h-[560px] overflow-hidden transition-all duration-150 ${
                     isDragTarget
-                      ? "bg-[#FAFAFA] border-2 border-dashed"
-                      : "bg-[#F7F7F7] border border-[#E8E8E8]"
+                      ? "bg-surface-hover border-2 border-dashed"
+                      : "bg-background border border-border"
                   }`}
                   style={{
                     borderColor: isDragTarget ? stage.dot : undefined,
                   }}
                 >
                   {/* Column Header */}
-                  <div className="px-4 py-3 border-b border-[#E8E8E8] flex items-center justify-between flex-shrink-0">
+                  <div className="px-4 py-3 border-b border-border flex items-center justify-between flex-shrink-0">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full" style={{ backgroundColor: stage.dot }} />
-                      <span className="text-[12px] font-medium text-[#333]">{stage.label}</span>
+                      <span className="text-[12px] font-medium text-foreground">{stage.label}</span>
                     </div>
-                    <span className="text-[11px] text-[#AAA] bg-white border border-[#E8E8E8] px-1.5 py-0.5 rounded-sm">
+                    <span className="text-[11px] text-muted bg-surface border border-border px-1.5 py-0.5 rounded-sm">
                       {cards.length}
                     </span>
                   </div>
@@ -338,7 +338,7 @@ export default function AdminCRMPage() {
                   {/* Cards Container */}
                   <div className="flex-1 overflow-y-auto p-2.5 space-y-2">
                     {cards.length === 0 && !isDragTarget ? (
-                      <div className="py-8 text-center text-[11px] text-[#DDD] border border-dashed border-[#EBEBEB] bg-white mt-1">
+                      <div className="py-8 text-center text-[11px] text-[#DDD] border border-dashed border-border bg-surface mt-1">
                         Kosong
                       </div>
                     ) : (
@@ -351,15 +351,15 @@ export default function AdminCRMPage() {
                             onDragStart={(e) => handleDragStart(e, contact)}
                             onDragEnd={handleDragEnd}
                             onClick={() => !isDragging && handleOpenDetail(contact)}
-                            className={`bg-white border p-3.5 cursor-grab active:cursor-grabbing transition-all group ${
+                            className={`bg-surface border p-3.5 cursor-grab active:cursor-grabbing transition-all group ${
                               isDragging
                                 ? "opacity-40 border-[#DDD] scale-95"
-                                : "border-[#E8E8E8] hover:border-[#CCC] hover:shadow-sm"
+                                : "border-border hover:border-border hover:shadow-sm"
                             }`}
                           >
                             {/* Drag handle hint */}
                             <div className="flex items-start justify-between mb-0.5">
-                              <h4 className="text-[13px] font-medium text-[#111] leading-snug">{contact.name}</h4>
+                              <h4 className="text-[13px] font-medium text-foreground leading-snug">{contact.name}</h4>
                               <GripVertical
                                 size={13}
                                 className="text-[#DDD] group-hover:text-[#BBB] transition-colors flex-shrink-0 mt-0.5 -mr-0.5"
@@ -368,14 +368,14 @@ export default function AdminCRMPage() {
                             </div>
 
                             {contact.company && (
-                              <p className="text-[11px] text-[#AAA] mb-2">{contact.company}</p>
+                              <p className="text-[11px] text-muted mb-2">{contact.company}</p>
                             )}
 
                             <div className="flex items-center justify-between gap-2 mt-2">
-                              <span className="text-[10px] bg-[#F0F0F0] text-[#666] px-1.5 py-0.5 rounded-sm leading-relaxed">
+                              <span className="text-[10px] bg-surface-hover text-muted px-1.5 py-0.5 rounded-sm leading-relaxed">
                                 {contact.serviceType.replace(" Development", "").replace(" App", "")}
                               </span>
-                              <span className="text-[10px] text-[#CCC]">
+                              <span className="text-[10px] text-muted">
                                 {contact.createdAt.toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}
                               </span>
                             </div>
@@ -401,11 +401,11 @@ export default function AdminCRMPage() {
         </>
       ) : (
         /* ===== INBOX VIEW (SPLIT-PANE) ===== */
-        <div className="grid grid-cols-1 lg:grid-cols-5 border border-[#E8E8E8] bg-white h-[580px] overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-5 border border-border bg-surface h-[580px] overflow-hidden">
           {/* Left: List */}
           <div className="lg:col-span-2 border-r border-[#F0F0F0] flex flex-col h-full overflow-y-auto">
             {filtered.length === 0 ? (
-              <div className="p-8 text-center text-[#CCC] text-sm">Tidak ada data.</div>
+              <div className="p-8 text-center text-muted text-sm">Tidak ada data.</div>
             ) : (
               <div className="divide-y divide-[#F7F7F7]">
                 {filtered.map((c) => {
@@ -415,23 +415,23 @@ export default function AdminCRMPage() {
                       key={c.id}
                       onClick={() => handleOpenDetail(c)}
                       className={`w-full px-4 py-3.5 text-left transition-colors flex flex-col gap-1.5 ${
-                        isSelected ? "bg-[#F7F7F7] border-l-2 border-[#111]" : "hover:bg-[#FAFAFA]"
+                        isSelected ? "bg-background border-l-2 border-[#111]" : "hover:bg-surface-hover"
                       }`}
                     >
                       <div className="flex justify-between items-start w-full gap-2">
                         <div className="flex items-center gap-2 min-w-0">
                           <StageDot status={c.status} />
-                          <span className="text-[13px] font-medium text-[#111] truncate">{c.name}</span>
+                          <span className="text-[13px] font-medium text-foreground truncate">{c.name}</span>
                         </div>
-                        <span className="text-[10px] text-[#CCC] flex-shrink-0">
+                        <span className="text-[10px] text-muted flex-shrink-0">
                           {c.createdAt.toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5 pl-4 flex-wrap">
-                        <span className="text-[10px] bg-[#F0F0F0] text-[#666] px-1.5 py-0.5 rounded-sm">{c.serviceType}</span>
-                        <span className="text-[10px] text-[#AAA]">{getStageLabel(c.status)}</span>
+                        <span className="text-[10px] bg-surface-hover text-muted px-1.5 py-0.5 rounded-sm">{c.serviceType}</span>
+                        <span className="text-[10px] text-muted">{getStageLabel(c.status)}</span>
                       </div>
-                      <p className="text-[11px] text-[#AAA] line-clamp-1 pl-4">{c.message}</p>
+                      <p className="text-[11px] text-muted line-clamp-1 pl-4">{c.message}</p>
                     </button>
                   );
                 })}
@@ -446,18 +446,18 @@ export default function AdminCRMPage() {
                 {/* Header */}
                 <div className="flex items-start justify-between gap-4 pb-5 border-b border-[#F0F0F0]">
                   <div>
-                    <h2 className="text-[17px] font-semibold text-[#111]">{selectedContact.name}</h2>
-                    <a href={`mailto:${selectedContact.email}`} className="text-[12px] text-[#888] hover:text-[#111] transition-colors">
+                    <h2 className="text-[17px] font-semibold text-foreground">{selectedContact.name}</h2>
+                    <a href={`mailto:${selectedContact.email}`} className="text-[12px] text-muted hover:text-foreground transition-colors">
                       {selectedContact.email}
                     </a>
                   </div>
                   <div className="flex gap-1.5">
                     <button onClick={() => setIsEditing(true)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] hover:text-[#111] text-[12px] transition-colors">
+                      className="flex items-center gap-1.5 px-3 py-1.5 border border-border hover:border-border text-muted hover:text-foreground text-[12px] transition-colors">
                       <Edit2 size={12} strokeWidth={1.8} /> Edit
                     </button>
                     <button onClick={() => handleDelete(selectedContact.id)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 border border-[#E0E0E0] hover:border-red-300 text-[#888] hover:text-red-500 text-[12px] transition-colors">
+                      className="flex items-center gap-1.5 px-3 py-1.5 border border-border hover:border-red-300 text-muted hover:text-red-500 text-[12px] transition-colors">
                       <Trash2 size={12} strokeWidth={1.8} /> Hapus
                     </button>
                   </div>
@@ -466,47 +466,47 @@ export default function AdminCRMPage() {
                 {/* Metadata */}
                 <div className="grid grid-cols-2 gap-3 text-[12px]">
                   {selectedContact.company && (
-                    <div className="flex items-center gap-2 text-[#555]">
-                      <Building2 size={13} className="text-[#CCC]" strokeWidth={1.8} />
+                    <div className="flex items-center gap-2 text-muted">
+                      <Building2 size={13} className="text-muted" strokeWidth={1.8} />
                       {selectedContact.company}
                     </div>
                   )}
-                  <div className="flex items-center gap-2 text-[#555]">
+                  <div className="flex items-center gap-2 text-muted">
                     <StageDot status={selectedContact.status} />
                     {getStageLabel(selectedContact.status)}
                   </div>
-                  <div className="flex items-center gap-2 text-[#888] col-span-2">
-                    <Calendar size={12} className="text-[#CCC]" strokeWidth={1.8} />
+                  <div className="flex items-center gap-2 text-muted col-span-2">
+                    <Calendar size={12} className="text-muted" strokeWidth={1.8} />
                     {selectedContact.createdAt.toLocaleString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
                   </div>
-                  <div className="text-[#888]">
-                    <span className="text-[#CCC]">Layanan: </span>{selectedContact.serviceType}
+                  <div className="text-muted">
+                    <span className="text-muted">Layanan: </span>{selectedContact.serviceType}
                   </div>
                 </div>
 
                 {/* Message */}
                 <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.15em] uppercase text-[#AAA] mb-2">Pesan / Catatan</p>
-                  <div className="p-4 bg-[#F7F7F7] border border-[#EEEEEE] text-[13px] text-[#444] leading-relaxed whitespace-pre-wrap">
+                  <p className="text-[10px] tracking-[0.15em] uppercase text-muted mb-2">Pesan / Catatan</p>
+                  <div className="p-4 bg-background border border-[#EEEEEE] text-[13px] text-[#444] leading-relaxed whitespace-pre-wrap">
                     {selectedContact.message}
                   </div>
                 </div>
 
                 {/* Stage navigation */}
                 <div className="pt-4 border-t border-[#F0F0F0] flex items-center justify-between">
-                  <span className="text-[12px] text-[#888]">Ubah tahapan pipeline:</span>
+                  <span className="text-[12px] text-muted">Ubah tahapan pipeline:</span>
                   <div className="flex gap-1.5">
                     <button
                       onClick={() => handleMoveStage(selectedContact.id, "prev")}
                       disabled={selectedContact.status === STAGES[0].id}
-                      className="flex items-center gap-1 px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] disabled:opacity-30 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 border border-border hover:border-border text-muted text-[12px] disabled:opacity-30 transition-colors"
                     >
                       <ChevronLeft size={12} /> Mundur
                     </button>
                     <button
                       onClick={() => handleMoveStage(selectedContact.id, "next")}
                       disabled={selectedContact.status === STAGES[STAGES.length - 1].id}
-                      className="flex items-center gap-1 px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] disabled:opacity-30 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 border border-border hover:border-border text-muted text-[12px] disabled:opacity-30 transition-colors"
                     >
                       Maju <ChevronRight size={12} />
                     </button>
@@ -514,7 +514,7 @@ export default function AdminCRMPage() {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-[#CCC] gap-2">
+              <div className="flex flex-col items-center justify-center h-full text-muted gap-2">
                 <Mail size={24} strokeWidth={1} />
                 <span className="text-[12px]">Pilih prospek dari daftar untuk melihat detail.</span>
               </div>
@@ -526,27 +526,27 @@ export default function AdminCRMPage() {
       {/* ===== DRAWER ===== */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-[2px] flex justify-end" onClick={() => setDrawerOpen(false)}>
-          <div className="w-full max-w-lg h-full bg-white border-l border-[#E0E0E0] flex flex-col overflow-y-auto shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="w-full max-w-lg h-full bg-surface border-l border-border flex flex-col overflow-y-auto shadow-xl" onClick={(e) => e.stopPropagation()}>
             {/* Drawer Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-[#F0F0F0]">
               <div>
-                <h3 className="text-[15px] font-semibold text-[#111]">
+                <h3 className="text-[15px] font-semibold text-foreground">
                   {isEditing
                     ? selectedContact ? "Edit Kontak" : "Tambah Lead"
                     : "Detail Prospek"}
                 </h3>
-                <p className="text-[11px] text-[#AAA] mt-0.5">
+                <p className="text-[11px] text-muted mt-0.5">
                   {selectedContact ? `ID: ${selectedContact.id}` : "Lead baru"}
                 </p>
               </div>
               <div className="flex items-center gap-1.5">
                 {!isEditing && selectedContact && (
                   <button onClick={() => setIsEditing(true)}
-                    className="px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] transition-colors">
+                    className="px-3 py-1.5 border border-border hover:border-border text-muted text-[12px] transition-colors">
                     Edit
                   </button>
                 )}
-                <button onClick={() => setDrawerOpen(false)} className="p-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#888] hover:text-[#111] transition-colors">
+                <button onClick={() => setDrawerOpen(false)} className="p-1.5 border border-border hover:border-border text-muted hover:text-foreground transition-colors">
                   <X size={16} />
                 </button>
               </div>
@@ -556,27 +556,27 @@ export default function AdminCRMPage() {
               <>
                 <form onSubmit={handleSave} className="flex-1 px-6 py-5 space-y-4 text-[13px]">
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Nama Lengkap</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Nama Lengkap</label>
                     <input required value={name} onChange={(e) => setName(e.target.value)} type="text"
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                       placeholder="Budi Santoso" />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Email</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Email</label>
                     <input required value={email} onChange={(e) => setEmail(e.target.value)} type="email"
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                       placeholder="budi@perusahaan.id" />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Perusahaan (Opsional)</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Perusahaan (Opsional)</label>
                     <input value={company} onChange={(e) => setCompany(e.target.value)} type="text"
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                       placeholder="Nama perusahaan" />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Layanan</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Layanan</label>
                     <select value={serviceType} onChange={(e) => setServiceType(e.target.value)}
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors">
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors">
                       <option value="Web Development">Web Development</option>
                       <option value="Mobile App Development">Mobile App Development</option>
                       <option value="Machine Learning">Machine Learning / AI</option>
@@ -584,24 +584,24 @@ export default function AdminCRMPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Pipeline Stage</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Pipeline Stage</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)}
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors">
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors">
                       {STAGES.map((s) => (
                         <option key={s.id} value={s.id}>{s.label}</option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Pesan / Catatan CRM</label>
+                    <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Pesan / Catatan CRM</label>
                     <textarea required rows={5} value={message} onChange={(e) => setMessage(e.target.value)}
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors resize-none"
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors resize-none"
                       placeholder="Detail pesan atau catatan internal..." />
                   </div>
                 </form>
                 <div className="px-6 py-4 border-t border-[#F0F0F0] flex justify-end gap-2">
                   <button type="button" onClick={() => setDrawerOpen(false)}
-                    className="px-4 py-2.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] transition-colors">
+                    className="px-4 py-2.5 border border-border hover:border-border text-muted text-[12px] transition-colors">
                     Batal
                   </button>
                   <button onClick={handleSave} disabled={saving}
@@ -615,35 +615,35 @@ export default function AdminCRMPage() {
               selectedContact && (
                 <div className="flex-1 px-6 py-5 space-y-5 text-[13px]">
                   {/* Details grid */}
-                  <div className="grid grid-cols-2 gap-4 p-4 bg-[#F7F7F7] border border-[#EEEEEE]">
+                  <div className="grid grid-cols-2 gap-4 p-4 bg-background border border-[#EEEEEE]">
                     <div>
-                      <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Nama</p>
-                      <p className="text-[#111] font-medium">{selectedContact.name}</p>
+                      <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Nama</p>
+                      <p className="text-foreground font-medium">{selectedContact.name}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Email</p>
-                      <a href={`mailto:${selectedContact.email}`} className="text-[#555] hover:text-[#111] transition-colors break-all">{selectedContact.email}</a>
+                      <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Email</p>
+                      <a href={`mailto:${selectedContact.email}`} className="text-muted hover:text-foreground transition-colors break-all">{selectedContact.email}</a>
                     </div>
                     {selectedContact.company && (
                       <div>
-                        <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Perusahaan</p>
-                        <p className="text-[#555]">{selectedContact.company}</p>
+                        <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Perusahaan</p>
+                        <p className="text-muted">{selectedContact.company}</p>
                       </div>
                     )}
                     <div>
-                      <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Layanan</p>
-                      <p className="text-[#555]">{selectedContact.serviceType}</p>
+                      <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Layanan</p>
+                      <p className="text-muted">{selectedContact.serviceType}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Status</p>
+                      <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Status</p>
                       <div className="flex items-center gap-1.5 mt-0.5">
                         <StageDot status={selectedContact.status} />
-                        <span className="text-[#555]">{getStageLabel(selectedContact.status)}</span>
+                        <span className="text-muted">{getStageLabel(selectedContact.status)}</span>
                       </div>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.12em] uppercase text-[#AAA] mb-0.5">Tanggal</p>
-                      <p className="text-[#888] text-[12px]">
+                      <p className="text-[10px] tracking-[0.12em] uppercase text-muted mb-0.5">Tanggal</p>
+                      <p className="text-muted text-[12px]">
                         {selectedContact.createdAt.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}
                       </p>
                     </div>
@@ -651,22 +651,22 @@ export default function AdminCRMPage() {
 
                   {/* Message */}
                   <div>
-                    <p className="text-[10px] tracking-[0.15em] uppercase text-[#AAA] mb-2">Pesan / Catatan</p>
-                    <div className="p-4 bg-[#F7F7F7] border border-[#EEEEEE] text-[13px] text-[#444] leading-relaxed whitespace-pre-wrap">
+                    <p className="text-[10px] tracking-[0.15em] uppercase text-muted mb-2">Pesan / Catatan</p>
+                    <div className="p-4 bg-background border border-[#EEEEEE] text-[13px] text-[#444] leading-relaxed whitespace-pre-wrap">
                       {selectedContact.message}
                     </div>
                   </div>
 
                   {/* Stage move */}
                   <div className="pt-2 flex items-center justify-between">
-                    <span className="text-[12px] text-[#888]">Pindah tahapan:</span>
+                    <span className="text-[12px] text-muted">Pindah tahapan:</span>
                     <div className="flex gap-1.5">
                       <button onClick={() => handleMoveStage(selectedContact.id, "prev")} disabled={selectedContact.status === STAGES[0].id}
-                        className="flex items-center gap-1 px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] disabled:opacity-30 transition-colors">
+                        className="flex items-center gap-1 px-3 py-1.5 border border-border hover:border-border text-muted text-[12px] disabled:opacity-30 transition-colors">
                         <ChevronLeft size={12} /> Mundur
                       </button>
                       <button onClick={() => handleMoveStage(selectedContact.id, "next")} disabled={selectedContact.status === STAGES[STAGES.length - 1].id}
-                        className="flex items-center gap-1 px-3 py-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] disabled:opacity-30 transition-colors">
+                        className="flex items-center gap-1 px-3 py-1.5 border border-border hover:border-border text-muted text-[12px] disabled:opacity-30 transition-colors">
                         Maju <ChevronRight size={12} />
                       </button>
                     </div>

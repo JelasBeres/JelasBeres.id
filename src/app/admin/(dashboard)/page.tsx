@@ -132,10 +132,10 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-8 max-w-6xl">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#E8E8E8]">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border">
         <div>
-          <p className="text-[11px] tracking-[0.18em] uppercase text-[#AAA] mb-1">{currentDate}</p>
-          <h1 className="text-2xl font-semibold text-[#111] tracking-tight">Dashboard</h1>
+          <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">{currentDate}</p>
+          <h1 className="text-2xl font-semibold text-foreground tracking-tight">Dashboard</h1>
         </div>
 
         <div className="flex items-center gap-2 text-[12px]">
@@ -144,7 +144,7 @@ export default function AdminDashboardPage() {
             className={dbStatus === "online" ? "text-emerald-500" : "text-red-400"}
             strokeWidth={2}
           />
-          <span className="text-[#888]">
+          <span className="text-muted">
             Database:{" "}
             <span
               className={
@@ -162,7 +162,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {loading ? (
-        <div className="flex items-center gap-2 py-20 justify-center text-[#AAA] text-sm">
+        <div className="flex items-center gap-2 py-20 justify-center text-muted text-sm">
           <RefreshCw size={15} className="animate-spin" />
           <span>Memuat data...</span>
         </div>
@@ -175,10 +175,10 @@ export default function AdminDashboardPage() {
               return (
                 <div
                   key={card.label}
-                  className="bg-white border border-[#E8E8E8] p-5 hover:border-[#CCC] transition-colors"
+                  className="bg-surface border border-border p-5 hover:border-border transition-colors"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="p-2 bg-[#F4F4F4] rounded-sm">
+                    <div className="p-2 bg-surface-hover rounded-sm">
                       <Icon size={16} strokeWidth={1.8} className="text-[#444]" />
                     </div>
                     {card.badge && (
@@ -187,12 +187,12 @@ export default function AdminDashboardPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-3xl font-semibold text-[#111] leading-none mb-1">{card.value}</p>
+                  <p className="text-3xl font-semibold text-foreground leading-none mb-1">{card.value}</p>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-[12px] text-[#888]">{card.label}</span>
+                    <span className="text-[12px] text-muted">{card.label}</span>
                     <Link
                       href={card.href}
-                      className="text-[11px] text-[#888] hover:text-[#111] flex items-center gap-0.5 transition-colors"
+                      className="text-[11px] text-muted hover:text-foreground flex items-center gap-0.5 transition-colors"
                     >
                       Kelola <ArrowUpRight size={11} />
                     </Link>
@@ -205,10 +205,10 @@ export default function AdminDashboardPage() {
           {/* Bottom Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Recent Messages */}
-            <div className="lg:col-span-2 bg-white border border-[#E8E8E8]">
+            <div className="lg:col-span-2 bg-surface border border-border">
               <div className="flex items-center justify-between px-5 py-4 border-b border-[#F0F0F0]">
-                <h3 className="text-[13px] font-medium text-[#111]">Pesan Masuk Terbaru</h3>
-                <Link href="/admin/crm" className="text-[11px] text-[#888] hover:text-[#111] flex items-center gap-0.5 transition-colors">
+                <h3 className="text-[13px] font-medium text-foreground">Pesan Masuk Terbaru</h3>
+                <Link href="/admin/crm" className="text-[11px] text-muted hover:text-foreground flex items-center gap-0.5 transition-colors">
                   Semua <ArrowUpRight size={11} />
                 </Link>
               </div>
@@ -218,22 +218,22 @@ export default function AdminDashboardPage() {
               ) : (
                 <div className="divide-y divide-[#F4F4F4]">
                   {recentContacts.map((contact) => (
-                    <div key={contact.id} className="px-5 py-3.5 flex items-center justify-between gap-4 hover:bg-[#FAFAFA] transition-colors">
+                    <div key={contact.id} className="px-5 py-3.5 flex items-center justify-between gap-4 hover:bg-surface-hover transition-colors">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-[13px] font-medium text-[#111]">{contact.name}</span>
+                          <span className="text-[13px] font-medium text-foreground">{contact.name}</span>
                           {contact.company && (
-                            <span className="text-[11px] text-[#AAA]">· {contact.company}</span>
+                            <span className="text-[11px] text-muted">· {contact.company}</span>
                           )}
-                          <span className="text-[10px] bg-[#F0F0F0] text-[#666] px-1.5 py-0.5 rounded-sm">{contact.serviceType}</span>
+                          <span className="text-[10px] bg-surface-hover text-muted px-1.5 py-0.5 rounded-sm">{contact.serviceType}</span>
                         </div>
-                        <p className="text-[11px] text-[#AAA] mt-0.5 truncate max-w-md">{contact.message}</p>
+                        <p className="text-[11px] text-muted mt-0.5 truncate max-w-md">{contact.message}</p>
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
                         <span className={`text-[10px] px-1.5 py-0.5 border rounded-sm ${STATUS_STYLES[contact.status] ?? "bg-gray-50 text-gray-500 border-gray-200"}`}>
                           {contact.status}
                         </span>
-                        <span className="text-[10px] text-[#CCC]">
+                        <span className="text-[10px] text-muted">
                           {contact.createdAt.toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}
                         </span>
                       </div>
@@ -244,9 +244,9 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* System Actions */}
-            <div className="bg-white border border-[#E8E8E8] p-5 h-fit">
-              <h3 className="text-[13px] font-medium text-[#111] mb-1">Operasi Database</h3>
-              <p className="text-[12px] text-[#AAA] leading-relaxed mb-5">
+            <div className="bg-surface border border-border p-5 h-fit">
+              <h3 className="text-[13px] font-medium text-foreground mb-1">Operasi Database</h3>
+              <p className="text-[12px] text-muted leading-relaxed mb-5">
                 Reset seluruh konten portofolio, testimoni, dan layanan ke data sampel default.
               </p>
               <button

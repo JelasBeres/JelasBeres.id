@@ -29,21 +29,21 @@ export default function AdminLoginPage() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-[#F7F7F7] px-4"
+      className="min-h-screen flex items-center justify-center bg-background px-4"
       style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}
     >
       <div className="w-full max-w-[360px]">
         {/* Wordmark */}
         <div className="mb-10">
           <p className="text-[11px] tracking-[0.2em] uppercase text-[#999] mb-1">Admin Panel</p>
-          <h1 className="text-[22px] font-semibold text-[#111] tracking-tight">JelasBeres.id</h1>
+          <h1 className="text-[22px] font-semibold text-foreground tracking-tight">JelasBeres.id</h1>
         </div>
 
         {/* Card */}
-        <div className="bg-white border border-[#E8E8E8] p-8">
+        <div className="bg-surface border border-border p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-[11px] tracking-[0.15em] uppercase text-[#888] mb-2" htmlFor="email">
+              <label className="block text-[11px] tracking-[0.15em] uppercase text-muted mb-2" htmlFor="email">
                 Email
               </label>
               <input
@@ -53,12 +53,12 @@ export default function AdminLoginPage() {
                 placeholder="nama@jelasberes.id"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-sm placeholder:text-[#C0C0C0] focus:outline-none focus:border-[#111] transition-colors"
+                className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-sm placeholder:text-muted focus:outline-none focus:border-[#111] transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] tracking-[0.15em] uppercase text-[#888] mb-2" htmlFor="password">
+              <label className="block text-[11px] tracking-[0.15em] uppercase text-muted mb-2" htmlFor="password">
                 Password
               </label>
               <input
@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-sm placeholder:text-[#C0C0C0] focus:outline-none focus:border-[#111] transition-colors"
+                className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-sm placeholder:text-muted focus:outline-none focus:border-[#111] transition-colors"
               />
             </div>
 

@@ -160,10 +160,10 @@ export default function AdminProjectsPage() {
   return (
     <div className="space-y-6 max-w-6xl">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#E8E8E8]">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border">
         <div>
-          <p className="text-[11px] tracking-[0.18em] uppercase text-[#AAA] mb-1">Manajemen</p>
-          <h1 className="text-2xl font-semibold text-[#111] tracking-tight">Portfolio Projects</h1>
+          <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Manajemen</p>
+          <h1 className="text-2xl font-semibold text-foreground tracking-tight">Portfolio Projects</h1>
         </div>
         <button
           onClick={handleOpenCreate}
@@ -183,7 +183,7 @@ export default function AdminProjectsPage() {
             placeholder="Cari project..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#E0E0E0] text-[#111] text-[13px] placeholder:text-[#CCC] focus:outline-none focus:border-[#999] transition-colors"
+            className="w-full pl-9 pr-4 py-2.5 bg-surface border border-border text-foreground text-[13px] placeholder:text-muted focus:outline-none focus:border-border transition-colors"
           />
         </div>
         <div className="flex gap-1.5 flex-wrap">
@@ -194,7 +194,7 @@ export default function AdminProjectsPage() {
               className={`px-3 py-2 text-[11px] tracking-[0.08em] border transition-colors ${
                 filterCategory === cat
                   ? "bg-[#111] text-white border-[#111]"
-                  : "bg-white text-[#666] border-[#E0E0E0] hover:border-[#999]"
+                  : "bg-surface text-muted border-border hover:border-border"
               }`}
             >
               {cat === "all" ? "Semua" : cat === "ml" ? "ML / AI" : cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -209,34 +209,34 @@ export default function AdminProjectsPage() {
           <Loader2 size={15} className="animate-spin" /> Memuat...
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-16 text-center text-[#CCC] text-sm border border-dashed border-[#E0E0E0] bg-white">
+        <div className="py-16 text-center text-muted text-sm border border-dashed border-border bg-surface">
           Tidak ditemukan project.
         </div>
       ) : (
-        <div className="bg-white border border-[#E8E8E8] overflow-x-auto">
+        <div className="bg-surface border border-border overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[780px]">
             <thead>
               <tr className="border-b border-[#F0F0F0]">
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium w-10 text-center">#</th>
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium">Project</th>
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium w-28">Kategori</th>
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium w-40">Tech Stack</th>
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium w-24 text-center">Link</th>
-                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#AAA] font-medium w-24 text-center">Aksi</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium w-10 text-center">#</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium">Project</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium w-28">Kategori</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium w-40">Tech Stack</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium w-24 text-center">Link</th>
+                <th className="px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted font-medium w-24 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#F4F4F4]">
               {filtered.map((project) => (
-                <tr key={project.id} className="hover:bg-[#FAFAFA] transition-colors">
-                  <td className="px-4 py-3 text-center text-[12px] text-[#AAA]">{project.orderIndex}</td>
+                <tr key={project.id} className="hover:bg-surface-hover transition-colors">
+                  <td className="px-4 py-3 text-center text-[12px] text-muted">{project.orderIndex}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       {project.thumbnailUrl && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={project.thumbnailUrl} alt={project.title} className="w-9 h-9 object-cover border border-[#EEE]" />
+                        <img src={project.thumbnailUrl} alt={project.title} className="w-9 h-9 object-cover border border-border" />
                       )}
                       <div>
-                        <div className="text-[13px] font-medium text-[#111] flex items-center gap-1.5">
+                        <div className="text-[13px] font-medium text-foreground flex items-center gap-1.5">
                           {project.title}
                           {project.featured && <Star size={12} className="fill-amber-400 text-amber-400" />}
                         </div>
@@ -245,27 +245,27 @@ export default function AdminProjectsPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-[10px] bg-[#F0F0F0] text-[#666] px-2 py-0.5 rounded-sm">{project.category}</span>
+                    <span className="text-[10px] bg-surface-hover text-muted px-2 py-0.5 rounded-sm">{project.category}</span>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {Array.isArray(project.techStack) && project.techStack.slice(0, 3).map((tag: string, i: number) => (
-                        <span key={i} className="text-[10px] px-1.5 py-0.5 bg-[#F4F4F4] text-[#666] border border-[#EEE]">{tag}</span>
+                        <span key={i} className="text-[10px] px-1.5 py-0.5 bg-surface-hover text-muted border border-border">{tag}</span>
                       ))}
                       {Array.isArray(project.techStack) && project.techStack.length > 3 && (
-                        <span className="text-[10px] px-1.5 py-0.5 bg-[#F4F4F4] text-[#AAA] border border-[#EEE]">+{project.techStack.length - 3}</span>
+                        <span className="text-[10px] px-1.5 py-0.5 bg-surface-hover text-muted border border-border">+{project.techStack.length - 3}</span>
                       )}
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
                     <div className="inline-flex gap-2">
                       {project.liveUrl && (
-                        <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-[#BBB] hover:text-[#111] transition-colors">
+                        <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-[#BBB] hover:text-foreground transition-colors">
                           <Globe size={14} strokeWidth={1.8} />
                         </a>
                       )}
                       {project.repoUrl && (
-                        <a href={project.repoUrl} target="_blank" rel="noreferrer" className="text-[#BBB] hover:text-[#111] transition-colors">
+                        <a href={project.repoUrl} target="_blank" rel="noreferrer" className="text-[#BBB] hover:text-foreground transition-colors">
                           <Code size={14} strokeWidth={1.8} />
                         </a>
                       )}
@@ -273,10 +273,10 @@ export default function AdminProjectsPage() {
                   </td>
                   <td className="px-4 py-3 text-center">
                     <div className="inline-flex gap-1.5">
-                      <button onClick={() => handleOpenEdit(project)} className="p-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#888] hover:text-[#111] transition-colors">
+                      <button onClick={() => handleOpenEdit(project)} className="p-1.5 border border-border hover:border-border text-muted hover:text-foreground transition-colors">
                         <Edit2 size={13} strokeWidth={1.8} />
                       </button>
-                      <button onClick={() => handleDelete(project.id)} className="p-1.5 border border-[#E0E0E0] hover:border-red-300 text-[#888] hover:text-red-500 transition-colors">
+                      <button onClick={() => handleDelete(project.id)} className="p-1.5 border border-border hover:border-red-300 text-muted hover:text-red-500 transition-colors">
                         <Trash2 size={13} strokeWidth={1.8} />
                       </button>
                     </div>
@@ -295,20 +295,20 @@ export default function AdminProjectsPage() {
           onClick={() => setDrawerOpen(false)}
         >
           <div
-            className="w-full max-w-lg h-full bg-white border-l border-[#E0E0E0] flex flex-col overflow-y-auto shadow-xl"
+            className="w-full max-w-lg h-full bg-surface border-l border-border flex flex-col overflow-y-auto shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-[#F0F0F0]">
               <div>
-                <h3 className="text-[15px] font-semibold text-[#111]">
+                <h3 className="text-[15px] font-semibold text-foreground">
                   {editingProject ? "Edit Project" : "Tambah Project"}
                 </h3>
-                <p className="text-[11px] text-[#AAA] mt-0.5">
+                <p className="text-[11px] text-muted mt-0.5">
                   {editingProject ? `ID: ${editingProject.id}` : "Project baru"}
                 </p>
               </div>
-              <button onClick={() => setDrawerOpen(false)} className="p-1.5 border border-[#E0E0E0] hover:border-[#999] text-[#888] hover:text-[#111] transition-colors">
+              <button onClick={() => setDrawerOpen(false)} className="p-1.5 border border-border hover:border-border text-muted hover:text-foreground transition-colors">
                 <X size={16} />
               </button>
             </div>
@@ -317,30 +317,30 @@ export default function AdminProjectsPage() {
             <form onSubmit={handleSave} className="flex-1 px-6 py-5 space-y-4 text-[13px]">
               {/* Title */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Judul Project</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Judul Project</label>
                 <input required value={title} onChange={handleTitleChange} type="text"
-                  className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                  className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                   placeholder="Nama project" />
               </div>
               {/* Slug */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Slug</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Slug</label>
                 <input required value={slug} onChange={(e) => setSlug(e.target.value)} type="text"
-                  className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                  className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                   placeholder="nama-project" />
               </div>
               {/* Description */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Deskripsi</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Deskripsi</label>
                 <textarea required rows={4} value={description} onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors resize-none"
+                  className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors resize-none"
                   placeholder="Deskripsi project..." />
               </div>
               {/* Category */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Kategori</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Kategori</label>
                 <select value={category} onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors">
+                  className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors">
                   <option value="web">Web Development</option>
                   <option value="mobile">Mobile Development</option>
                   <option value="ml">Machine Learning / AI</option>
@@ -349,13 +349,13 @@ export default function AdminProjectsPage() {
               </div>
               {/* Tech Stack */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Tech Stack (Enter untuk tambah)</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Tech Stack (Enter untuk tambah)</label>
                 <input value={techStackInput} onChange={(e) => setTechStackInput(e.target.value)} onKeyDown={handleAddTech} type="text"
-                  className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                  className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                   placeholder="Next.js, Tailwind..." />
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {techStack.map((tech, i) => (
-                    <span key={i} className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 bg-[#F0F0F0] text-[#555] border border-[#E0E0E0]">
+                    <span key={i} className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 bg-surface-hover text-muted border border-border">
                       {tech}
                       <button type="button" onClick={() => setTechStack(techStack.filter((_, j) => j !== i))} className="hover:text-red-500">
                         <X size={9} />
@@ -366,21 +366,21 @@ export default function AdminProjectsPage() {
               </div>
               {/* Thumbnail */}
               <div>
-                <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Thumbnail URL / Upload Gambar</label>
+                <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Thumbnail URL / Upload Gambar</label>
                 <div className="flex gap-2 items-center">
                   <div className="relative flex-1">
                     <input required value={thumbnailUrl} onChange={(e) => setThumbnailUrl(e.target.value)} type="text"
-                      className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[12px] focus:outline-none focus:border-[#999] transition-colors"
+                      className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[12px] focus:outline-none focus:border-border transition-colors"
                       placeholder="/uploads/... atau https://..." />
                   </div>
-                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] hover:border-[#999] text-[#111] text-[12px] cursor-pointer transition-colors whitespace-nowrap">
-                    {uploadingImage ? <Loader2 size={14} className="animate-spin text-[#888]" /> : <Upload size={14} className="text-[#888]" />}
+                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-background border border-border hover:border-border text-foreground text-[12px] cursor-pointer transition-colors whitespace-nowrap">
+                    {uploadingImage ? <Loader2 size={14} className="animate-spin text-muted" /> : <Upload size={14} className="text-muted" />}
                     {uploadingImage ? "Uploading..." : "Upload"}
                     <input type="file" accept="image/png, image/jpeg, image/webp, image/gif" className="hidden" onChange={handleImageUpload} disabled={uploadingImage} />
                   </label>
                 </div>
                 {thumbnailUrl && (
-                  <div className="mt-2 p-2 border border-[#E0E0E0] bg-[#F7F7F7] inline-block">
+                  <div className="mt-2 p-2 border border-border bg-background inline-block">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={thumbnailUrl} alt="Thumbnail preview" className="h-20 object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} onLoad={(e) => (e.currentTarget.style.display = 'block')} />
                   </div>
@@ -389,30 +389,30 @@ export default function AdminProjectsPage() {
               {/* URLs */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Live URL</label>
+                  <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Live URL</label>
                   <input value={liveUrl} onChange={(e) => setLiveUrl(e.target.value)} type="url"
-                    className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                    className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                     placeholder="https://..." />
                 </div>
                 <div>
-                  <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Repo URL</label>
+                  <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Repo URL</label>
                   <input value={repoUrl} onChange={(e) => setRepoUrl(e.target.value)} type="url"
-                    className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors"
+                    className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors"
                     placeholder="https://github.com/..." />
                 </div>
               </div>
               {/* Featured + Order */}
               <div className="grid grid-cols-2 gap-3 items-center">
-                <label className="flex items-center gap-2 cursor-pointer p-3 bg-[#F7F7F7] border border-[#E0E0E0] hover:border-[#999] transition-colors">
+                <label className="flex items-center gap-2 cursor-pointer p-3 bg-background border border-border hover:border-border transition-colors">
                   <input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} className="accent-[#111]" />
                   <span className="text-[12px] text-[#444] flex items-center gap-1">
                     <Star size={12} className="fill-amber-400 text-amber-400" /> Featured
                   </span>
                 </label>
                 <div>
-                  <label className="block text-[10px] tracking-[0.15em] uppercase text-[#888] mb-1.5">Order Index</label>
+                  <label className="block text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">Order Index</label>
                   <input type="number" min={0} value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value))}
-                    className="w-full px-3 py-2.5 bg-[#F7F7F7] border border-[#E0E0E0] text-[#111] text-[13px] focus:outline-none focus:border-[#999] transition-colors" />
+                    className="w-full px-3 py-2.5 bg-background border border-border text-foreground text-[13px] focus:outline-none focus:border-border transition-colors" />
                 </div>
               </div>
             </form>
@@ -420,7 +420,7 @@ export default function AdminProjectsPage() {
             {/* Actions */}
             <div className="px-6 py-4 border-t border-[#F0F0F0] flex justify-end gap-2">
               <button type="button" onClick={() => setDrawerOpen(false)}
-                className="px-4 py-2.5 border border-[#E0E0E0] hover:border-[#999] text-[#666] text-[12px] transition-colors">
+                className="px-4 py-2.5 border border-border hover:border-border text-muted text-[12px] transition-colors">
                 Batal
               </button>
               <button onClick={handleSave} disabled={saving}

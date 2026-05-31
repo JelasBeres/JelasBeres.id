@@ -44,6 +44,7 @@ export function Navbar() {
       ]
     },
     { href: "/pricing", label: "04. Pricing" },
+    { href: "/blog", label: "05. Blog" },
   ];
 
   return (
