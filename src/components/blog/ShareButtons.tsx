@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link2, Twitter, Facebook, Linkedin, MessageCircle } from "lucide-react";
+import { IconLink, IconBrandTwitter, IconBrandFacebook, IconBrandLinkedin, IconBrandWhatsapp } from "@tabler/icons-react";
 
 interface ShareButtonsProps {
   title: string;
@@ -44,7 +44,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           className="p-2 border border-border text-foreground hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-colors rounded-sm group"
           title="Share to WhatsApp"
         >
-          <MessageCircle size={18} />
+          <IconBrandWhatsapp size={18} />
         </a>
         <a
           href={shareLinks.twitter}
@@ -53,7 +53,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           className="p-2 border border-border text-foreground hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-colors rounded-sm"
           title="Share to X (Twitter)"
         >
-          <Twitter size={18} />
+          <IconBrandTwitter size={18} />
         </a>
         <a
           href={shareLinks.linkedin}
@@ -62,7 +62,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           className="p-2 border border-border text-foreground hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] transition-colors rounded-sm"
           title="Share to LinkedIn"
         >
-          <Linkedin size={18} />
+          <IconBrandLinkedin size={18} />
         </a>
         <a
           href={shareLinks.facebook}
@@ -71,7 +71,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           className="p-2 border border-border text-foreground hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-colors rounded-sm"
           title="Share to Facebook"
         >
-          <Facebook size={18} />
+          <IconBrandFacebook size={18} />
         </a>
         <div className="w-px h-6 bg-border mx-2 hidden sm:block"></div>
         <button
@@ -79,7 +79,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           className="flex items-center gap-2 px-3 py-2 border border-border text-foreground hover:bg-surface-hover transition-colors rounded-sm font-mono text-[11px] uppercase tracking-wider"
           title="Copy Link"
         >
-          <Link2 size={16} />
+          <IconLink size={16} />
           {copied ? <span className="text-green">Tersalin!</span> : <span>Salin Link</span>}
         </button>
       </div>
