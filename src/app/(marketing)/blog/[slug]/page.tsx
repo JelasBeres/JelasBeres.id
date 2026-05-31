@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { format } from "date-fns";
 
+import ShareButtons from "@/components/blog/ShareButtons";
+
 export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -82,6 +84,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           prose-img:rounded-md prose-img:border prose-img:border-border"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
+        
+        <ShareButtons title={article.title} slug={article.slug} />
       </div>
     </div>
   );
