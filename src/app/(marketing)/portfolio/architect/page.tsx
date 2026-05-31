@@ -192,7 +192,7 @@ export default function ArchitectPage() {
                 <p className="pl-4">nodes: <span className="text-orange-300">"Industrial_Tier_4"</span>,</p>
                 <p className="pl-4">sync: <span className="text-purple-400">true</span>,</p>
                 <p className="pl-4">precision: <span className="text-purple-400">0.001</span></p>
-                <p className="text-blue-400">});</p>
+                <p className="text-blue-400">{"});"}</p>
                 <p className="mt-4 text-green font-bold animate-pulse">STATUS: SYSTEM_READY</p>
               </div>
             </div>
