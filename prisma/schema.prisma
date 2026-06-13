@@ -1,6 +1,7 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -78,4 +79,43 @@ model Article {
   updatedAt   DateTime  @updatedAt @map("updated_at")
 
   @@map("articles")
+}
+
+model TeamMember {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String
+  photoUrl  String   @map("photo_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("team_members")
+}
+
+model Invoice {
+  id          String   @id @default(cuid())
+  clientName  String   @map("client_name")
+  clientEmail String?  @map("client_email")
+  clientPhone String?  @map("client_phone")
+  amount      Float
+  description String
+  status      String   @default("PENDING") // PENDING, PAID, CANCELLED
+  paymentUrl  String?  @map("payment_url")
+  dueDate     DateTime? @map("due_date")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("invoices")
+}
+
+model Pricing {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       String
+  description String
+  features    Json
+  highlighted Boolean  @default(false)
+  orderIndex  Int      @default(0) @map("order_index")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("pricing_plans")
 }

@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/Hero";
-import MacbookScrollDemo from "@/components/ui/macbook-scroll-demo";
 import { Contact } from "@/components/sections/Contact";
 import { getPublicServices } from "@/actions/services";
 
@@ -11,7 +10,6 @@ export default async function MarketingPage() {
   return (
     <>
       <Hero />
-      <MacbookScrollDemo />
       <Contact services={services as any} />
     </>
   );

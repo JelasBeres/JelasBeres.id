@@ -37,38 +37,38 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div className="pt-24 pb-20 bg-background min-h-[80vh]">
+    <div className="pt-20 md:pt-32 pb-16 bg-background min-h-[80vh]">
       <div className="container mx-auto px-6 max-w-4xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-green transition-colors mb-12"
+          className="inline-flex items-center gap-2 font-mono text-[10px] text-muted hover:text-green transition-colors mb-6 uppercase tracking-wider"
         >
-          <ArrowLeft size={14} /> BACK TO BLOG
+          <ArrowLeft size={12} /> BACK TO BLOG
         </Link>
 
-        <header className="mb-12 text-center md:text-left">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs font-mono text-muted mb-6">
-            <span className="flex items-center gap-1.5 uppercase text-green bg-green/10 px-2 py-1 rounded-sm">
-              <Tag size={12} />
+        <header className="mb-6 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-[10px] font-mono text-muted mb-4">
+            <span className="flex items-center gap-1 uppercase text-green bg-green/10 px-2 py-0.5 rounded-sm">
+              <Tag size={10} />
               {article.category}
             </span>
-            <span className="flex items-center gap-1.5">
-              <Calendar size={12} />
+            <span className="flex items-center gap-1">
+              <Calendar size={10} />
               {article.publishedAt ? format(new Date(article.publishedAt), 'MMMM dd, yyyy') : 'Draft'}
             </span>
           </div>
 
-          <h1 className="font-display font-bold text-3xl md:text-5xl lg:text-6xl text-foreground leading-tight mb-6">
+          <h1 className="font-display font-extrabold text-2xl md:text-4xl text-foreground leading-tight mb-4 uppercase tracking-tight">
             {article.title}
           </h1>
 
-          <p className="font-sans text-xl text-muted leading-relaxed max-w-3xl">
+          <p className="font-sans text-sm md:text-base text-muted leading-relaxed max-w-3xl">
             {article.excerpt}
           </p>
         </header>
 
         {article.coverImage && (
-          <div className="relative aspect-[21/9] w-full mb-16 border border-border bg-surface overflow-hidden">
+          <div className="relative aspect-[21/9] w-full mb-8 border border-border bg-surface overflow-hidden">
             <img
               src={article.coverImage}
               alt={article.title}

@@ -11,6 +11,7 @@ import {
   RefreshCw,
   ArrowUpRight,
   Terminal,
+  Tag,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -19,6 +20,7 @@ interface DashboardStats {
   contactCount: number;
   testimonialCount: number;
   serviceCount: number;
+  pricingCount: number;
   pendingContacts: number;
 }
 
@@ -65,6 +67,12 @@ const statCards = (stats: DashboardStats | null) => [
     value: stats?.serviceCount ?? 0,
     icon: Layers,
     href: "/admin/services",
+  },
+  {
+    label: "Pricing Plans",
+    value: stats?.pricingCount ?? 0,
+    icon: Tag,
+    href: "/admin/pricing",
   },
 ];
 

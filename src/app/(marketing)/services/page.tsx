@@ -12,7 +12,7 @@ export default async function ServicesPage() {
   const services = await getPublicServices();
 
   return (
-    <div className="pt-24">
+    <div className="pt-20 md:pt-32 pb-16">
       <Services services={services as any} />
     </div>
   );

@@ -60,69 +60,69 @@ export function Contact({ services }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background border-t border-border relative">
+    <section id="contact" className="py-16 bg-background border-t border-border relative">
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        <div className="text-center mb-16">
-          <span className="font-mono text-sm text-green tracking-wider mb-4 block flex items-center justify-center gap-2">
+        <div className="text-center mb-8">
+          <span className="font-mono text-sm text-green tracking-wider mb-2 block flex items-center justify-center gap-2">
             <Terminal size={14} /> ./initiate_contact.sh
           </span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground leading-tight mb-4">
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground leading-tight mb-3">
             Siap membangun sesuatu yang luar biasa?
           </h2>
-          <p className="font-sans text-muted">
+          <p className="font-sans text-muted text-sm md:text-base">
             Let's discuss your next project. Fill out the form below and our team will get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="bg-surface border border-border p-8 relative overflow-hidden">
+        <div className="bg-surface border border-border p-6 relative overflow-hidden">
           {/* Blueprint decorations */}
           <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-green"></div>
           <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-green"></div>
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-green"></div>
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-green"></div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Name */}
-              <div className="space-y-2">
-                <label className="font-mono text-sm text-muted">NAME *</label>
+              <div className="space-y-1">
+                <label className="font-mono text-xs text-muted">NAME *</label>
                 <input
                   {...register("name")}
-                  className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors"
+                  className="w-full bg-surface-hover border border-border px-4 py-2 text-foreground focus:border-green transition-colors text-sm"
                   placeholder="John Doe"
                 />
                 {errors.name && <p className="text-red-400 text-xs font-mono mt-1">{errors.name.message}</p>}
               </div>
 
               {/* Email */}
-              <div className="space-y-2">
-                <label className="font-mono text-sm text-muted">EMAIL *</label>
+              <div className="space-y-1">
+                <label className="font-mono text-xs text-muted">EMAIL *</label>
                 <input
                   {...register("email")}
-                  className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors"
+                  className="w-full bg-surface-hover border border-border px-4 py-2 text-foreground focus:border-green transition-colors text-sm"
                   placeholder="john@example.com"
                 />
                 {errors.email && <p className="text-red-400 text-xs font-mono mt-1">{errors.email.message}</p>}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Company */}
-              <div className="space-y-2">
-                <label className="font-mono text-sm text-muted">COMPANY</label>
+              <div className="space-y-1">
+                <label className="font-mono text-xs text-muted">COMPANY</label>
                 <input
                   {...register("company")}
-                  className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors"
+                  className="w-full bg-surface-hover border border-border px-4 py-2 text-foreground focus:border-green transition-colors text-sm"
                   placeholder="ACME Corp"
                 />
               </div>
 
               {/* Service Type */}
-              <div className="space-y-2">
-                <label className="font-mono text-sm text-muted">SERVICE *</label>
+              <div className="space-y-1">
+                <label className="font-mono text-xs text-muted">SERVICE *</label>
                 <select
                   {...register("serviceType")}
-                  className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors appearance-none"
+                  className="w-full bg-surface-hover border border-border px-4 py-2 text-foreground focus:border-green transition-colors appearance-none text-sm"
                 >
                   <option value="">Select a service</option>
                   {services && services.length > 0 ? (
@@ -147,12 +147,12 @@ export function Contact({ services }: ContactProps) {
             </div>
 
             {/* Message */}
-            <div className="space-y-2">
-              <label className="font-mono text-sm text-muted">MESSAGE *</label>
+            <div className="space-y-1">
+              <label className="font-mono text-xs text-muted">MESSAGE *</label>
               <textarea
                 {...register("message")}
-                rows={5}
-                className="w-full bg-surface-hover border border-border px-4 py-3 text-foreground focus:border-green transition-colors resize-none"
+                rows={3}
+                className="w-full bg-surface-hover border border-border px-4 py-2 text-foreground focus:border-green transition-colors resize-none text-sm"
                 placeholder="Tell us about your project requirements..."
               />
               {errors.message && <p className="text-red-400 text-xs font-mono mt-1">{errors.message.message}</p>}
@@ -175,7 +175,7 @@ export function Contact({ services }: ContactProps) {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-4 bg-foreground text-background font-sans font-bold hover:bg-green transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 text-sm bg-foreground text-background font-sans font-bold hover:bg-green transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === "loading" ? "UPLOADING..." : "Kirim Pesan"} <Send size={18} />
             </button>

@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Compass, Settings, Building2, Server, Layers, Zap } from "lucide-react";
+import { Compass, Settings, Building2, Server, Layers, Zap, Eye, FileText, Palette, Trees } from "lucide-react";
+import { Jost } from "next/font/google";
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-jost",
+});
 
 export const metadata = {
   title: "Architecture & Engineering | JelasBeres.id",
@@ -9,7 +16,14 @@ export const metadata = {
 
 export default function ArchitectPage() {
   return (
-    <div className="bg-background text-foreground selection:bg-green selection:text-white">
+    <div 
+      className={`${jost.className} bg-background text-foreground selection:bg-green selection:text-white`}
+      style={{
+        fontFamily: `Futura, ${jost.style.fontFamily}, sans-serif`,
+        "--font-display": `Futura, ${jost.style.fontFamily}, sans-serif`,
+        "--font-sans": `Futura, ${jost.style.fontFamily}, sans-serif`,
+      } as React.CSSProperties}
+    >
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden blueprint-grid">
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
@@ -69,103 +83,276 @@ export default function ArchitectPage() {
 
       {/* Expertise Section */}
       <section className="py-32 bg-surface" id="expertise">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[90rem] mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-xl">
-              <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Our Expertise Core</h2>
-              <p className="font-sans text-lg text-muted">We operate at the intersection of bits and atoms, ensuring your physical structures are as robust as your digital networks.</p>
+              <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Layanan Studio Arsitektur</h2>
+              <p className="font-sans text-lg text-muted">Solusi perancangan menyeluruh mulai dari konsep awal hingga detail konstruksi fisik.</p>
             </div>
             <div className="font-mono text-xs font-medium uppercase tracking-widest text-muted border border-border px-4 py-2">
-              Solutions / 01-03
+              Layanan / 01-05
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Expertise Card 1 */}
-            <div className="group p-10 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[400px]">
-              <div>
-                <Settings size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
-                <h3 className="font-display text-2xl font-bold mb-4 text-foreground">CAD Engineering</h3>
-                <p className="font-sans text-muted leading-relaxed">High-fidelity 2D and 3D modeling for industrial components and architectural masterplans.</p>
-              </div>
-              <ul className="font-mono text-[11px] font-medium uppercase tracking-widest space-y-3 text-muted mt-8">
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Parametric Design</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Tolerancing Analysis</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> BIM Integration</li>
-              </ul>
-            </div>
-            
-            {/* Expertise Card 2 */}
-            <div className="group p-10 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[400px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {/* Architectural Design */}
+            <div className="group p-8 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[460px]">
               <div>
                 <Building2 size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
-                <h3 className="font-display text-2xl font-bold mb-4 text-foreground">Architectural Systems</h3>
-                <p className="font-sans text-muted leading-relaxed">Intelligent building systems that integrate HVAC, security, and automation into a single cohesive UI.</p>
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">1. Architectural Design</h3>
+                <p className="font-sans text-sm text-muted leading-relaxed">Perancangan estetis, fungsional, dan ramah lingkungan yang disesuaikan dengan kebutuhan Anda.</p>
               </div>
-              <ul className="font-mono text-[11px] font-medium uppercase tracking-widest space-y-3 text-muted mt-8">
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Smart Sensor Mesh</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Energy Optimization</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Digital Twins</li>
+              <ul className="font-sans text-xs tracking-wide space-y-3 text-muted mt-8">
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Rumah Tinggal</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Villa & Resort</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Bangunan Komersial</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Perkantoran</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Fasilitas Pendidikan</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Master Planning</li>
               </ul>
             </div>
             
-            {/* Expertise Card 3 */}
-            <div className="group p-10 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[400px]">
+            {/* Architectural Visualization */}
+            <div className="group p-8 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[460px]">
               <div>
-                <Server size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
-                <h3 className="font-display text-2xl font-bold mb-4 text-foreground">IT Infrastructure</h3>
-                <p className="font-sans text-muted leading-relaxed">Next-gen server deployment, low-latency networking, and cloud-native architectural strategy.</p>
+                <Eye size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">2. Architectural Visualization</h3>
+                <p className="font-sans text-sm text-muted leading-relaxed">Presentasi visual berkualitas tinggi untuk memberikan gambaran nyata sebelum konstruksi dimulai.</p>
               </div>
-              <ul className="font-mono text-[11px] font-medium uppercase tracking-widest space-y-3 text-muted mt-8">
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Edge Computing</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> SDN Deployment</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-green"></span> Security Hardening</li>
+              <ul className="font-sans text-xs tracking-wide space-y-3 text-muted mt-8">
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> 3D Modeling</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Photorealistic Rendering</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Interior Rendering</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Exterior Rendering</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Architectural Animation</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Virtual Tour & VR</li>
+              </ul>
+            </div>
+            
+            {/* Construction Documentation */}
+            <div className="group p-8 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[460px]">
+              <div>
+                <FileText size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">3. Construction Documentation</h3>
+                <p className="font-sans text-sm text-muted leading-relaxed">Penyusunan gambar teknis detail dan dokumen perizinan untuk kelancaran pembangunan.</p>
+              </div>
+              <ul className="font-sans text-xs tracking-wide space-y-3 text-muted mt-8">
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Gambar Kerja Arsitektur</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Detail Konstruksi</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Shop Drawing</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> As-Built Drawing</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Dokumen Perizinan (PBG/SLF)</li>
+              </ul>
+            </div>
+            
+            {/* Interior Design */}
+            <div className="group p-8 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[460px]">
+              <div>
+                <Palette size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">4. Interior Design</h3>
+                <p className="font-sans text-sm text-muted leading-relaxed">Penciptaan ruang dalam yang harmonis, efisien, dan mencerminkan karakter penghuninya.</p>
+              </div>
+              <ul className="font-sans text-xs tracking-wide space-y-3 text-muted mt-8">
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Interior Residensial</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Interior Komersial</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Space Planning</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Material & Furniture Selection</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Custom Furniture Design</li>
+              </ul>
+            </div>
+            
+            {/* Landscape Design */}
+            <div className="group p-8 border border-border hover:border-green transition-all duration-500 bg-background flex flex-col justify-between min-h-[460px]">
+              <div>
+                <Trees size={40} className="text-foreground mb-8 group-hover:text-green transition-colors" strokeWidth={1.5} />
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">5. Landscape Design</h3>
+                <p className="font-sans text-sm text-muted leading-relaxed">Perencanaan area luar ruangan hijau yang asri dan terintegrasi dengan arsitektur utama.</p>
+              </div>
+              <ul className="font-sans text-xs tracking-wide space-y-3 text-muted mt-8">
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Taman Residensial</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Desain Taman Komersial</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Hardscape & Softscape Planning</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Courtyard Design</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Plaza & Public Space Design</li>
+                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green rounded-full"></span> Landscape Master Planning</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Hybrid Process Section */}
+      {/* Alur Kerja Section */}
       <section className="py-32 bg-background border-y border-border overflow-hidden relative" id="process">
-        <div className="absolute inset-0 blueprint-grid opacity-50"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="absolute inset-0 blueprint-grid opacity-35"></div>
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="text-center mb-24">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Hybrid Deployment Flow</h2>
-            <div className="h-1 w-20 bg-green mx-auto"></div>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Alur Kerja Perancangan</h2>
+            <p className="font-sans text-lg text-muted max-w-2xl mx-auto">Proses bertahap yang sistematis untuk merealisasikan visi arsitektur Anda dengan presisi.</p>
+            <div className="h-1 w-20 bg-green mx-auto mt-6"></div>
           </div>
           
-          <div className="relative">
-            {/* Progress Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-border -translate-y-1/2"></div>
+          <div className="relative pl-8 md:pl-12 border-l border-border/80 ml-4 md:ml-8 space-y-20">
+            {/* Step 1 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 01</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">1. Konsultasi Awal & Brief Klien</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pengumpulan data awal dan diskusi target rencana pembangunan.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Hubungi via WhatsApp, Email, atau Online Meeting.</li>
+                  <li>Pengumpulan data kebutuhan (fungsi, luas, lokasi, budget, referensi).</li>
+                  <li>Diskusi target waktu dan lingkup pekerjaan.</li>
+                  <li>Penawaran jasa dan estimasi awal biaya.</li>
+                </ul>
+              </div>
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 relative">
-              {/* Step 1 */}
-              <div className="bg-surface p-8 border border-border z-10 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                <span className="font-mono text-xs font-bold tracking-widest text-green mb-4 block">PHASE 01</span>
-                <h4 className="font-display text-xl font-bold mb-3 text-foreground">Blueprint Mapping</h4>
-                <p className="font-sans text-muted text-sm leading-relaxed">Translating physical requirements into a digital schematic with millimeter precision.</p>
-              </div>
+            {/* Step 2 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
               
-              {/* Step 2 */}
-              <div className="bg-surface p-8 border border-border z-10 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                <span className="font-mono text-xs font-bold tracking-widest text-green mb-4 block">PHASE 02</span>
-                <h4 className="font-display text-xl font-bold mb-3 text-foreground">Structural Audit</h4>
-                <p className="font-sans text-muted text-sm leading-relaxed">Stress-testing the architecture against both environmental and digital load factors.</p>
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 02</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">2. Penawaran & Kontrak Kerja</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Penyusunan kesepakatan kerja dan administrasi legalitas proyek.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Pengiriman proposal dan formal quotation.</li>
+                  <li>Revisi lingkup pekerjaan bila diperlukan.</li>
+                  <li>Persetujuan penawaran secara tertulis.</li>
+                  <li>Penandatanganan kontrak kerja arsitektur.</li>
+                  <li>Pembayaran termin pertama (DP).</li>
+                </ul>
               </div>
+            </div>
+            
+            {/* Step 3 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
               
-              {/* Step 3 */}
-              <div className="bg-surface p-8 border border-border z-10 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                <span className="font-mono text-xs font-bold tracking-widest text-green mb-4 block">PHASE 03</span>
-                <h4 className="font-display text-xl font-bold mb-3 text-foreground">Digital Layering</h4>
-                <p className="font-sans text-muted text-sm leading-relaxed">Injecting the IT stack into the physical model, configuring routing and nodes.</p>
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 03</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">3. Pengumpulan Data Lokasi</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pengumpulan berkas data fisik lokasi tanah dari klien:</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Sertifikat tanah atau gambar site plan.</li>
+                  <li>Foto & rekaman video kondisi lapangan.</li>
+                  <li>Titik koordinat presisi Google Maps.</li>
+                  <li>Data kontur/topografi (jika ada).</li>
+                  <li>Peraturan daerah/setempat (jika tersedia).</li>
+                </ul>
               </div>
+            </div>
+            
+            {/* Step 4 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
               
-              {/* Step 4 */}
-              <div className="bg-surface p-8 border border-border z-10 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                <span className="font-mono text-xs font-bold tracking-widest text-green mb-4 block">PHASE 04</span>
-                <h4 className="font-display text-xl font-bold mb-3 text-foreground">System Sync</h4>
-                <p className="font-sans text-muted text-sm leading-relaxed">Live deployment and validation of the hybrid ecosystem for full production use.</p>
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 04</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">4. Konsep Desain (Concept Design)</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Penyusunan dasar arsitektural dan gagasan awal tata ruang.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Analisis kebutuhan kapasitas ruang.</li>
+                  <li>Penyusunan zoning dan diagram hubungan ruang.</li>
+                  <li>Pembuatan moodboard visual dan konsep tema.</li>
+                  <li>Sketsa denah kasar atau studi massing 3D.</li>
+                  <li>Presentasi konsep secara online.</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Step 5 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 05</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">5. Pengembangan Desain</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pematangan rancangan dasar menjadi bentuk arsitektur konkret.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Pengembangan denah presisi berskala.</li>
+                  <li>Pembuatan tampak depan, samping, dan potongan bangunan.</li>
+                  <li>Pemilihan jenis material utama eksterior & interior.</li>
+                  <li>Pemodelan detail model 3D bangunan.</li>
+                  <li>Revisi berdasarkan feedback klien.</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Step 6 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 06</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">6. Visualisasi Arsitektur</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pembuatan output presentasi realistik beresolusi tinggi.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Rendering 3D realistik eksterior & interior.</li>
+                  <li>Animasi video walkthrough arsitektur (opsional).</li>
+                  <li>Presentasi desain final secara online.</li>
+                  <li>Persetujuan/approval desain resmi oleh klien.</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Step 7 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 07</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">7. Gambar Kerja</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pembuatan dokumen gambar teknis lengkap untuk panduan pembangunan di lapangan.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Denah teknis berdimensi lengkap.</li>
+                  <li>Tampak teknis dan potongan struktural arsitektur.</li>
+                  <li>Gambar detail arsitektur (kamar mandi, fasad, dll).</li>
+                  <li>Detail pintu, jendela, tangga, dan pola finishing lantai.</li>
+                  <li>Layout arsitektural untuk kebutuhan konstruksi fisik.</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Step 8 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 08</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">8. Estimasi Biaya (Opsional)</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Penyusunan anggaran biaya untuk efisiensi budget pembangunan.</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>Penyusunan Rencana Anggaran Biaya (RAB) terperinci.</li>
+                  <li>Daftar spesifikasi lengkap material konstruksi.</li>
+                  <li>BOQ (Bill of Quantity) untuk acuan kontraktor.</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Step 9 */}
+            <div className="relative group">
+              {/* Timeline dot */}
+              <div className="absolute -left-[40px] md:-left-[56px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-green group-hover:bg-green transition-all duration-300"></div>
+              
+              <div>
+                <span className="font-mono text-xs font-bold tracking-widest text-green mb-2 block">TAHAP 09</span>
+                <h4 className="font-display text-2xl font-bold mb-3 text-foreground">9. Penyerahan Dokumen</h4>
+                <p className="font-sans text-muted text-sm leading-relaxed mb-4 max-w-2xl">Pengiriman paket data file final kepada klien dalam format lengkap:</p>
+                <ul className="text-xs text-muted/80 space-y-2 list-disc pl-4 font-sans max-w-2xl">
+                  <li>File PDF (Siap Cetak) dan DWG (AutoCAD).</li>
+                  <li>File SKP / Revit (sesuai kesepakatan awal).</li>
+                  <li>Berkas gambar render final resolusi tinggi.</li>
+                </ul>
               </div>
             </div>
           </div>

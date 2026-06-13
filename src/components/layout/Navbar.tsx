@@ -29,22 +29,21 @@ export function Navbar() {
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   const navLinks = [
-    { href: "/services", label: "01. Services" },
-    { href: "/process", label: "02. Process" },
+    { href: "/services", label: "Services" },
+    { href: "/process", label: "Process" },
     { 
       href: "/portfolio", 
-      label: "03. Portfolio",
+      label: "Portfolio",
       dropdown: [
         { href: "/portfolio/web-development", label: "Web Development" },
         { href: "/portfolio/mobile-development", label: "Mobile Development" },
         { href: "/portfolio/architect", label: "Architect" },
-        { href: "/portfolio/machine-learning", label: "Machine Learning" },
-        { href: "/portfolio/data-science", label: "Data Science" },
-        { href: "/portfolio/data-analyst", label: "Data Analyst" },
+        { href: "/portfolio/machine-learning", label: "Machine Learning / Data Science" },
       ]
     },
-    { href: "/pricing", label: "04. Pricing" },
-    { href: "/blog", label: "05. Blog" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/team", label: "Team" },
+    { href: "/blog", label: "Blog" },
   ];
 
   return (
@@ -71,10 +70,11 @@ export function Navbar() {
                   className="absolute inset-0"
                 >
                   <Image 
-                    src="https://jelasberes.id/image/jelasberes-logo-black.webp" 
+                    src="/image/jelasberes-logo-white.webp" 
                     alt="JelasBeres.id Logo" 
                     fill
-                    className="object-contain object-left"
+                    sizes="(max-width: 768px) 192px, 192px"
+                    className="object-contain object-left invert"
                   />
                 </motion.div>
               ) : (
@@ -87,9 +87,10 @@ export function Navbar() {
                   className="absolute inset-0"
                 >
                   <Image 
-                    src="https://jelasberes.id/image/jelasberes-logo-white.webp" 
+                    src="/image/jelasberes-logo-white.webp" 
                     alt="JelasBeres.id Logo" 
                     fill
+                    sizes="(max-width: 768px) 192px, 192px"
                     className="object-contain object-left"
                   />
                 </motion.div>

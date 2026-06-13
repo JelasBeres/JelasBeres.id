@@ -15,16 +15,16 @@ export default async function BlogPage() {
   const articles = await getArticles();
 
   return (
-    <div className="pt-24 pb-20 bg-background min-h-[80vh]">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mb-16">
-          <span className="font-mono text-sm text-green tracking-wider mb-4 block">
+    <div className="pt-20 md:pt-32 pb-16 bg-background min-h-[80vh]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-xl mb-8">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-green mb-2 block">
             [05] OUR BLOG
           </span>
-          <h1 className="font-display font-bold text-4xl md:text-5xl text-foreground leading-tight mb-6">
+          <h1 className="font-display font-extrabold text-2xl md:text-3xl text-foreground uppercase tracking-tight mb-2">
             Insights &amp; <span className="text-muted">Updates</span>
           </h1>
-          <p className="font-sans text-muted text-lg">
+          <p className="font-sans text-muted text-xs md:text-sm">
             Thoughts, technical deep dives, and stories from our team building world-class digital products.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default async function BlogPage() {
             <p>Belum ada artikel yang dipublikasikan.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 md:gap-x-8">
             {articles.map((article) => (
               <article
                 key={article.id}
@@ -48,39 +48,39 @@ export default async function BlogPage() {
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center font-mono text-muted">
+                    <div className="w-full h-full flex items-center justify-center font-mono text-muted text-xs">
                       No Image
                     </div>
                   )}
                 </Link>
 
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-4 text-xs font-mono text-muted mb-4">
-                    <span className="flex items-center gap-1.5 uppercase text-green">
-                      <Tag size={12} />
+                <div className="p-4 md:p-5 flex-1 flex flex-col">
+                  <div className="flex items-center gap-3 text-[10px] font-mono text-muted mb-3">
+                    <span className="flex items-center gap-1 uppercase text-green">
+                      <Tag size={10} />
                       {article.category}
                     </span>
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={12} />
+                    <span className="flex items-center gap-1">
+                      <Calendar size={10} />
                       {article.publishedAt ? format(new Date(article.publishedAt), 'MMM dd, yyyy') : 'Draft'}
                     </span>
                   </div>
 
-                  <h2 className="font-display font-bold text-xl text-foreground mb-3 group-hover:text-green transition-colors line-clamp-2">
+                  <h2 className="font-display font-bold text-base text-foreground mb-2 group-hover:text-green transition-colors line-clamp-2 uppercase">
                     <Link href={`/blog/${article.slug}`}>
                       {article.title}
                     </Link>
                   </h2>
 
-                  <p className="font-sans text-muted text-sm mb-6 line-clamp-3 flex-1">
+                  <p className="font-sans text-muted text-xs mb-4 line-clamp-3 flex-1 leading-relaxed">
                     {article.excerpt}
                   </p>
 
                   <Link
                     href={`/blog/${article.slug}`}
-                    className="inline-flex items-center gap-2 font-mono text-xs font-medium text-foreground group-hover:text-green transition-colors mt-auto"
+                    className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium text-foreground group-hover:text-green transition-colors mt-auto uppercase tracking-wider"
                   >
-                    READ MORE <ArrowRight size={14} />
+                    READ MORE <ArrowRight size={12} />
                   </Link>
                 </div>
               </article>

@@ -18,14 +18,20 @@ import {
   FileText,
   Moon,
   Sun,
+  Users,
+  Receipt,
+  Tag,
 } from "lucide-react";
 
 const menuItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Projects", href: "/admin/projects", icon: Briefcase },
   { name: "Services", href: "/admin/services", icon: Layers },
+  { name: "Pricing", href: "/admin/pricing", icon: Tag },
   { name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
+  { name: "Our Team", href: "/admin/team", icon: Users },
   { name: "Blog / Articles", href: "/admin/blog", icon: FileText },
+  { name: "Invoices & QRIS", href: "/admin/invoices", icon: Receipt },
   { name: "CRM & Inbox", href: "/admin/crm", icon: Inbox },
 ];
 

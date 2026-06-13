@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function ProcessPage() {
   return (
-    <div className="pt-24">
+    <div className="pt-16 md:pt-24 pb-12">
       <Process />
     </div>
   );

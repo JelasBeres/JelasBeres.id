@@ -30,11 +30,12 @@ export async function logoutAdmin() {
 
 export async function getDashboardStats() {
   try {
-    const [projectCount, contactCount, testimonialCount, serviceCount, pendingContacts, recentContacts] = await Promise.all([
+    const [projectCount, contactCount, testimonialCount, serviceCount, pricingCount, pendingContacts, recentContacts] = await Promise.all([
       prisma.project.count(),
       prisma.contact.count(),
       prisma.testimonial.count(),
       prisma.service.count(),
+      prisma.pricing.count(),
       prisma.contact.count({ where: { status: "pending" } }),
       prisma.contact.findMany({
         orderBy: { createdAt: "desc" },
@@ -49,6 +50,7 @@ export async function getDashboardStats() {
         contactCount,
         testimonialCount,
         serviceCount,
+        pricingCount,
         pendingContacts,
       },
       recentContacts,

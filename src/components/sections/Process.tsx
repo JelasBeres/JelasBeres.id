@@ -10,29 +10,30 @@ const processes = [
 
 export function Process() {
   return (
-    <section id="process" className="py-24 bg-background border-t border-border relative">
-      <div className="container mx-auto px-6">
-        <div className="mb-16">
-          <span className="font-mono text-sm text-muted tracking-wider mb-4 block">
+    <section id="process" className="py-8 md:py-16 bg-background relative">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-12">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-muted mb-2 block">
             [02] OUR PROCESS
           </span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-foreground leading-tight max-w-2xl">
+          <h2 className="font-display font-extrabold text-2xl md:text-3xl text-foreground uppercase tracking-tight max-w-2xl">
             Engineered for <span className="text-green">Success</span>
           </h2>
         </div>
 
         <div className="relative">
-          {/* Horizontal line for desktop */}
-          <div className="hidden md:block absolute top-[28px] left-0 w-full h-[1px] bg-border z-0"></div>
-          
-          <div className="flex flex-col md:flex-row gap-8 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-8 md:gap-x-8">
             {processes.map((p, i) => (
-              <div key={i} className="relative z-10 min-w-[280px] md:w-1/5 shrink-0 snap-start">
-                <div className="w-14 h-14 bg-surface border border-border flex items-center justify-center font-mono text-foreground text-lg font-bold mb-6 group-hover:border-green transition-colors">
+              <div key={i} className="group relative z-10">
+                {/* Connecting line to the next item (only shown on desktop lg screen for items 1-4) */}
+                {i < processes.length - 1 && (
+                  <div className="hidden lg:block absolute top-5 left-10 w-[calc(100%-40px+2rem)] h-[1px] bg-border group-hover:bg-green transition-all duration-500 z-[-1]" />
+                )}
+                <div className="w-10 h-10 bg-surface border border-border group-hover:border-green group-hover:bg-surface-hover flex items-center justify-center font-mono text-foreground text-sm font-bold mb-4 transition-colors duration-300">
                   {p.step}
                 </div>
-                <h3 className="font-display font-bold text-xl text-foreground mb-3">{p.title}</h3>
-                <p className="font-sans text-muted text-sm">{p.desc}</p>
+                <h3 className="font-display font-bold text-base text-foreground mb-1.5 uppercase group-hover:text-green transition-colors duration-300">{p.title}</h3>
+                <p className="font-sans text-muted text-xs leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
