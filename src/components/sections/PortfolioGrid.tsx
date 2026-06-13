@@ -70,8 +70,8 @@ export function PortfolioGrid({ filterCategory, projects = [] }: PortfolioGridPr
         </div>
       )}
 
-      {/* Compact List */}
-      <motion.div layout className="flex flex-col gap-3">
+      {/* Card Grid */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 w-full">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => {
             let parsedTechStack: string[] = [];
@@ -88,70 +88,57 @@ export function PortfolioGrid({ filterCategory, projects = [] }: PortfolioGridPr
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group relative border border-border bg-surface hover:border-green transition-all"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group flex flex-col gap-6 relative"
               >
-                <Link href={link} className="p-4 flex flex-col md:flex-row items-start md:items-center gap-4 sm:gap-6">
-                  {/* Compact Image */}
-                  <div className="relative w-full md:w-40 h-24 sm:h-20 shrink-0 overflow-hidden bg-surface-hover border border-border">
-                    <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors z-10"></div>
-                    {project.thumbnailUrl && (
-                      <Image
-                        src={project.thumbnailUrl}
-                        alt={project.title}
-                        fill
-                        className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
-                        sizes="(max-width: 768px) 100vw, 160px"
-                      />
-                    )}
-                  </div>
+                {/* Large Image Top */}
+                <div className="relative w-full aspect-video bg-surface-hover overflow-hidden rounded-xl block">
+                  <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                  {project.thumbnailUrl && (
+                    <Image
+                      src={project.thumbnailUrl}
+                      alt={project.title}
+                      fill
+                      className="object-contain grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  )}
+                </div>
 
-                  {/* Content */}
-                  <div className="flex-1 min-w-0 w-full">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-mono text-[10px] text-green font-bold tracking-wider">
-                        [ {categoryLabel.toUpperCase()} ]
-                      </span>
-                      <span className="md:hidden w-6 h-6 rounded-full border border-border flex items-center justify-center text-muted group-hover:border-green group-hover:bg-green group-hover:text-background transition-colors">
-                        <ArrowUpRight size={12} />
-                      </span>
-                    </div>
-                    
-                    <h3 className="font-display font-bold text-lg sm:text-xl text-foreground mb-1 group-hover:text-green transition-colors truncate">
+                {/* Details Below */}
+                <div className="flex flex-col gap-4">
+                  {/* Category */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-green text-xs font-mono font-bold uppercase tracking-widest border border-green/20 px-3 py-1.5 rounded-full bg-green/5">
+                      {categoryLabel}
+                    </span>
+                  </div>
+                  
+                  {/* Title & Desc */}
+                  <div>
+                    <h3 className="font-display font-bold text-3xl text-foreground mb-3 group-hover:text-green transition-colors">
                       {project.title}
                     </h3>
-                    
-                    <p className="font-sans text-muted text-xs sm:text-sm truncate">
+                    <p className="font-sans text-muted text-base leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
                   </div>
-
-                  {/* Tech Stack & Arrow */}
-                  <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-4 shrink-0 mt-2 md:mt-0">
-                    <div className="flex flex-wrap gap-1.5 md:max-w-[200px] md:justify-end">
-                      {parsedTechStack.slice(0, 3).map((tech) => (
-                        <span 
-                          key={tech} 
-                          className="px-2 py-0.5 bg-background border border-border text-foreground font-mono text-[10px] whitespace-nowrap"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {parsedTechStack.length > 3 && (
-                        <span className="px-2 py-0.5 bg-background border border-border text-muted font-mono text-[10px]">
-                          +{parsedTechStack.length - 3}
-                        </span>
-                      )}
-                    </div>
-                    
-                    <div className="hidden md:flex w-8 h-8 rounded-full border border-border items-center justify-center text-muted group-hover:border-green group-hover:bg-green group-hover:text-background transition-colors shrink-0">
-                      <ArrowUpRight size={14} />
-                    </div>
+                  
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {parsedTechStack.map((tech) => (
+                      <span 
+                        key={tech} 
+                        className="px-3 py-1.5 bg-surface border border-border text-foreground font-mono text-xs rounded-md"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                </Link>
+                </div>
               </motion.div>
             );
           })}
